@@ -4,8 +4,16 @@ import { z } from "zod";
 
 export const Route = new FileRoute('/').createRoute({
   component: IndexComponent,
+  validateSearch:z.object({
+    page:z.number().catch(1)
+  })
 });
 
 function IndexComponent() {
-  return <div>Hello</div>;
+  const pages=3;
+  const{page}=Route.useSearch()
+
+  return(
+<div>Page:{page}</div>
+  ) 
 }
